@@ -1,5 +1,5 @@
 import streamlit as st
-import pag1, pag2, pag3, pag4, pag5
+from pages import pag1, pag2, pag3, pag4, pag5
 
 import pandas as pd
 import numpy as np

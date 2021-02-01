@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
-image = Image.open('sf_image.jpg')
+image = Image.open('assets/sf_image.jpg')
 dataset_path ='dataset/Restaurant_Scores_-_LIVES_Standard.csv'
 
 def app():
