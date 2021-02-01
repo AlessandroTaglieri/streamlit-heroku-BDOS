@@ -1,9 +1,18 @@
 import streamlit as st
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
+from PIL import Image
+image = Image.open('assets/insp-2.jpg')
+orange = Image.open('assets/orange.jpg')
+green = Image.open('assets/green.jpg')
+red = Image.open('assets/red.jpg')
 def app():
-
-    text = st.text_area('Insert here your violation descriptio to know the predcited risk category')
+    st.title('Insert your insepection text and make predictions')
+    
+    st.header('Do tou want to know risk category of inspected restaruant?')
+    
+    text = st.text_area('Insert here your violation description to know the predcited risk category (short text, suggested max 50 chars):', max_chars=50)
+    
     st.write('You have inserted the following text: ', text)
     if text != '':
         with open('source/dict', "rb") as f:
@@ -23,4 +32,12 @@ def app():
                 else:
                     output='High Risk' 
                 st.write('Predicted RISK CATEGORY: ',output)
+                if prediction == 1.0:
+                    st.image(green, use_column_width=True)
+                elif prediction == 2.0:
+                    st.image(orange, use_column_width=True,width=70) 
+                else:
+                    st.image(red, use_column_width=True)
+    else:
+        st.image(image, use_column_width=True)
     

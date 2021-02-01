@@ -13,10 +13,10 @@ import folium
 
 
 PAGES = {
-    "Introduction on the data": pag4,
-    "Maps over inspections": pag1,
+    "Overview on the data": pag4,
+    "Inspection over the map": pag1,
     "Data over the time": pag3,
-    "Top & Flop Restaurants": pag2,
+    "Best & Worst five Restaurants": pag2,
     "Insert your insepection text and make predictions": pag5,
     
 }

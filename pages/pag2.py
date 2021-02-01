@@ -26,10 +26,10 @@ def app():
     #restaurant_dataset['inspection_date'] = restaurant_dataset['inspection_date'].str[:10]
     restaurant_dataset['inspection_date_p'] = pd.to_datetime(restaurant_dataset['inspection_date'])
 
-    st.title('Top & Flop Restaurants')
+    st.title('Best & Worst five Restaurants')
 
-    st.header('Flop five restaurants')
-    st.subheader('Table: Risk category distribution over top 5 restaurants')
+    st.header('Worst five restaurants')
+    st.subheader('Table: Risk category distribution over worst 5 restaurants')
     today = datetime.date.today()
     restaurant_dataset['inspection_date_p'] = restaurant_dataset['inspection_date_p'].astype('str')
     restaurant_dataset['inspection_date_p'] = pd.to_datetime(restaurant_dataset['inspection_date_p'])
@@ -47,10 +47,12 @@ def app():
     del worst_yr['total']
     st.dataframe(worst_yr, width=700)
     
-    st.subheader('Pie chart: Risk category distribution over top 5 restaurants')
+    st.subheader('Pie chart: Risk category distribution over worst 5 restaurants')
     st.bar_chart(worst_yr, width=700,height=500)
 
-    st.header('Top five restaurants')
+    st.header('Best five restaurants')
+    st.subheader('Table: Risk category distribution over best five restaurants')
+    
     best_yr = restaurant_dataset.groupby(['business_name','risk_category'])['violation_id'].count()
     best_yr = pd.DataFrame(best_yr)
     best_yr.reset_index(inplace=True)
@@ -64,6 +66,6 @@ def app():
     st.dataframe(best_yr, width=700)
     #worst_yr=worst_yr.transpose()
     #st.dataframe(worst_yr)
-    st.subheader('Pie chart: Risk category distribution over top 5 restaurants')
+    st.subheader('Pie chart: Risk category distribution over best five restaurants')
     st.bar_chart(best_yr, width=700,height=500)
  

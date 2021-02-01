@@ -25,7 +25,9 @@ def app():
     #take only date and not time
     
 
-    st.title('Maps over insepctions')
+    st.title('Data over the time')
+
+    st.subheader('This following figure represent the distributions of the inspections during time/years. Different risk category are represented with different colors, as we can see in the legend.')
     restaurant_dataset['inspection_date_p'] = pd.to_datetime(restaurant_dataset['inspection_date'])
     restaurant_dataset['inspection_date_p'] = restaurant_dataset['inspection_date_p'].dt.to_period('M')
     data_low = restaurant_dataset.loc[restaurant_dataset['risk_category'] ==  'Low Risk']
@@ -54,7 +56,7 @@ def app():
     
     st.line_chart(df,width=700,height=400)
   
-    st.header('aaa')
+    st.subheader('Score vs Time. This id an heatmap that represents the distribution of the inspections based on their scores and thei insepction date. Every point is colored by specifc weekeday refreed to inspection date.')
     restaurant_dataset['inspection_date_p'] = pd.to_datetime(restaurant_dataset['inspection_date'])
     # Score relation with date of the inspection, is there bias?
     date = restaurant_dataset.groupby('business_id')['inspection_date_p','inspection_score'].max()
@@ -92,7 +94,7 @@ def app():
     st.plotly_chart(fig)
 
     
-    st.header('Distribution over the risk category')
+    st.subheader('Insepction distribution over the risk category: it represents the distribution of all predictions for every risk category. As we can see in the figure, low risk category is more frequently.')
     low_risk = restaurant_dataset.loc[restaurant_dataset['risk_category']=='Low Risk'] 
     moderate_risk = restaurant_dataset.loc[restaurant_dataset['risk_category']=='Moderate Risk'] 
     high_risk = restaurant_dataset.loc[restaurant_dataset['risk_category']=='High Risk'] 
@@ -105,7 +107,7 @@ def app():
     st.bar_chart(df, width=600,height=500)
 
 
-    st.header('Distribution over the risk category')
+    st.subheader('Inspection distribution over their description: It represents the distribution of all viioaltion descriptions (grouped in four main catgories).')
 
     #converting violation type to 4 categories 'Hygiene','Legal','Noncompliance', 'Lack_Infrastructure'
     violation_hygiene = dict.fromkeys(['Unclean or degraded floors walls or ceilings', 'Wiping cloths not clean or properly stored or inadequate sanitizer', 'Moderate risk vermin infestation', 'Unclean nonfood contact surfaces', 'Foods not protected from contamination', 'Unclean hands or improper use of gloves', 'High risk vermin infestation', 'Inadequately cleaned or sanitized food contact surfaces', 'Low risk vermin infestation', 'Unclean or unsanitary food contact surfaces', 'Employee eating or smoking', 'Contaminated or adulterated food', 'Unsanitary employee garments hair or nails', 'Other low risk violation', 'Unclean unmaintained or improperly constructed toilet facilities', 'Other moderate risk violation', 'Sewage or wastewater contamination', 'Food in poor condition', 'Other high risk violation', 'Reservice of previously served foods', 'Discharge from employee nose mouth or eye', 'Improperly washed fruits and vegetables'], 'Hygiene')
