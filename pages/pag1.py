@@ -92,7 +92,7 @@ def app():
     
     st.plotly_chart(fig)
 
-    st.subheader('The following map represents a specific number of restaurants (default to 50). Every restaurant is represented by a marker that can be red, orange or green (by their risk category. If you can click on the marker, you can see the nameof the restaurant and its insepction description')
+    st.subheader('The following map represents a specific number of restaurants (default to 50). Every restaurant is represented by a marker that can be red, orange or green (by their risk category). If you can click on the marker, you can see the nameof the restaurant and its insepction description')
     number = st.number_input('Insert a number', 10,200)
 
     st.write('You have selected ', number, ' restaurants')
