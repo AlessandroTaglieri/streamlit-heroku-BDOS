@@ -26,7 +26,7 @@ def app():
     #restaurant_dataset['inspection_date'] = restaurant_dataset['inspection_date'].str[:10]
     restaurant_dataset['inspection_date_p'] = pd.to_datetime(restaurant_dataset['inspection_date'])
 
-    st.title('Maps over insepctions')
+    st.title('Inspections over the map')
     st.subheader('This map representsrestaurant in San Francisco map. Every marker has a different colour based on their inspextion score')
     
    
@@ -92,7 +92,7 @@ def app():
     
     st.plotly_chart(fig)
 
-    st.subheader('The following map represents a specific number of restaurants (default to 50). Every restaurant is represented by a marker that can be red, blue or green (by their risk category. If you can click on the marker, you can see the nameof the restaurant and its insepction description')
+    st.subheader('The following map represents a specific number of restaurants (default to 50). Every restaurant is represented by a marker that can be red, orange or green (by their risk category. If you can click on the marker, you can see the nameof the restaurant and its insepction description')
     number = st.number_input('Insert a number', 10,200)
 
     st.write('You have selected ', number, ' restaurants')
@@ -108,16 +108,16 @@ def app():
         if each[1]["risk_category"]=='High Risk':
             folium.Marker([each[1]["business_latitude"],
                         each[1]["business_longitude"]],
-                        popup=each[1]["business_name"].replace("'", "") + " Violation: " + each[1]["violation_description"],icon=folium.Icon(color='green')).add_to(map)
+                        popup=each[1]["business_name"].replace("'", "") + ": " + each[1]["violation_description"],icon=folium.Icon(color='red')).add_to(map)
         elif each[1]["risk_category"]=='Low Risk' :
             folium.Marker([each[1]["business_latitude"],
                         each[1]["business_longitude"]],
-                        popup=each[1]["business_name"].replace("'", "") + " Violation: " + each[1]["violation_description"],icon=folium.Icon(color='red')).add_to(map)
+                        popup=each[1]["business_name"].replace("'", "") + ": " + each[1]["violation_description"],icon=folium.Icon(color='green')).add_to(map)
 
         else:
             folium.Marker([each[1]["business_latitude"],
                         each[1]["business_longitude"]],
-                        popup=each[1]["business_name"].replace("'", "") + " Violation: " + each[1]["violation_description"],icon=folium.Icon(color='blue')).add_to(map)
+                        popup=each[1]["business_name"].replace("'", "") + ": " + each[1]["violation_description"],icon=folium.Icon(color='orange')).add_to(map)
 
 
     
