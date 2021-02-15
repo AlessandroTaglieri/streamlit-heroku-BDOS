@@ -1,5 +1,7 @@
 # streamlit-heroku-BDOS
 
+Dashboard: https://bdos-project.herokuapp.com
+
 Instruction to run locally streamlit:
 streanlit run ex.py
 
